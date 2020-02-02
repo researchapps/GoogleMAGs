@@ -5,7 +5,7 @@ url_list=$(echo $ftp_urls | tr ";" "\n")
 
 for addr in $url_list
 do
-    curl  http://$addr -O
+    wget http://$addr -O
 done
 ls
 which cutadapt
