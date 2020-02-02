@@ -39,7 +39,7 @@ rule cutadapt:
                   for addr in $url_list; do wget http://$addr -O; done
                   ls
                   which cutadapt
-                  cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -o {output.R1} -p ${output.R2} -O 5 --minimum-length=50 {params.id}_1.fastq.gz {params.id}_2.fastq.gz
+                  cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -o {output.R1} -p {output.R2} -O 5 --minimum-length=50 {params.id}_1.fastq.gz {params.id}_2.fastq.gz
                ''' 
 
 
