@@ -36,7 +36,7 @@ rule cutadapt:
 	shell: 
 		'''ftp_urls=$(curl "https://www.ebi.ac.uk/ena/data/warehouse/filereport?accession={params.id}&result=read_run&fields=fastq_ftp" | sed -n 2p)
                   url_list=$(echo $ftp_urls | tr ";" "\n")
-                  for addr in $url_list do; wget http://$addr -O; done
+                  for addr in $url_list; do wget http://$addr -O; done
                   ls
                   which cutadapt
                   cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -o {output.R1} -p ${output.R2} -O 5 --minimum-length=50 {params.id}_1.fastq.gz {params.id}_2.fastq.gz
