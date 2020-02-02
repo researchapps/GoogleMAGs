@@ -1,5 +1,5 @@
 #!/bin/bash
-ftp_urls=$(curl "https://www.ebi.ac.uk/ena/data/warehouse/filereport?accession=${1}&result=read_run&fields=fastq_ftp" | sed -n 2p)
+ftp_urls=$(wget "https://www.ebi.ac.uk/ena/data/warehouse/filereport?accession=${1}&result=read_run&fields=fastq_ftp" | sed -n 2p)
 
 url_list=$(echo $ftp_urls | tr ";" "\n")
 
