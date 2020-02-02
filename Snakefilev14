@@ -27,20 +27,10 @@ rule cutadapt:
 	params:
 		id="{id}"
 	conda: "envs/cutadapt.yaml"
-        #threads: 4
+	threads: 4
 	resources:
 	        cores=4, mem_mb=26000 
-	#shell: "wget https://raw.githubusercontent.com/researchapps/GoogleMAGs/fix/ftp_n_trimm/scripts/ftp_n_trimm.sh && "
-        #       "chmod +x ftp_n_trimm.sh && "
-        #       "bash ftp_n_trimm.sh {params.id} {output.R1} {output.R2}"
-	shell: 
-		'''ftp_urls=$(curl "https://www.ebi.ac.uk/ena/data/warehouse/filereport?accession={params.id}&result=read_run&fields=fastq_ftp" | sed -n 2p)
-                  url_list=$(echo $ftp_urls | tr ";" "\n")
-                  for addr in $url_list; do wget http://$addr -O; done
-                  ls
-                  which cutadapt
-                  cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -o {output.R1} -p {output.R2} -O 5 --minimum-length=50 {params.id}_1.fastq.gz {params.id}_2.fastq.gz
-               ''' 
+	shell: "curl https://raw.githubusercontent.com/researchapps/GoogleMAGs/fix/ftp_n_trimm/scripts/ftp_n_trimm.sh | bash -s {params.id} {output.R1} {output.R2}"
 
 
 rule megahit:
