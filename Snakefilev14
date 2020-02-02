@@ -11,7 +11,7 @@ shell.executable("/bin/bash")
 shell.prefix("source $HOME/.bashrc; ")
 
 IDS,  = glob_wildcards("runs/{id}.txt")
-IDS2, = gloh_wildcards("runs/{id}.txt")
+IDS2, = glob_wildcards("runs/{id}.txt")
 
 rule all:
 	input: GS.remote(expand(GS_PREFIX + "/coverage/{sample}.{sample2}.txt", sample=IDS, sample2=IDS2))
