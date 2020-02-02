@@ -27,7 +27,7 @@ rule cutadapt:
 	params:
 		id="{id}"
 	conda: "envs/cutadapt.yaml"
-	#threads: 4
+	threads: 4
 	resources:
 	        cores=4, mem_mb=26000 
 	shell: "curl https://raw.githubusercontent.com/researchapps/GoogleMAGs/fix/ftp_n_trimm/scripts/ftp_n_trimm.sh && "
