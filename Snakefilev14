@@ -30,7 +30,9 @@ rule cutadapt:
 	#threads: 4
 	resources:
 	        cores=4, mem_mb=26000 
-	shell: "curl https://raw.githubusercontent.com/researchapps/GoogleMAGs/fix/ftp_n_trimm/scripts/ftp_n_trimm.sh | bash -s {params.id} {output.R1} {output.R2}"
+	shell: "curl https://raw.githubusercontent.com/researchapps/GoogleMAGs/fix/ftp_n_trimm/scripts/ftp_n_trimm.sh"
+               "chmod +x ftp_n_trimm.sh"
+               "bash -s {params.id} {output.R1} {output.R2}"
 
 
 rule megahit:
